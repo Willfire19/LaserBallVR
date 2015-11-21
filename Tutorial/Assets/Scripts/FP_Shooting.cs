@@ -17,6 +17,7 @@ public class FP_Shooting : MonoBehaviour {
 	public GameObject laserDebrisPrefab;
 	public GameObject laserTrail;
     public GameObject laserCursor;
+    private GameObject cursor;
 
 	private AudioSource audioSrc;
 	public AudioClip shootFX;
@@ -28,11 +29,12 @@ public class FP_Shooting : MonoBehaviour {
 	void Start () {
 		audioSrc = GetComponent<AudioSource> ();
 		laserGunTip = GameObject.Find ("GunTip");
-		shootCanvas = GameObject.Find ("Canvas").GetComponent<Canvas> ();
+		//shootCanvas = GameObject.Find ("Canvas").GetComponent<Canvas> ();
         if (laserCursor != null) {
-            Instantiate(laserCursor, new Vector3(0, 0, 0), Quaternion.identity);
+            cursor = (GameObject)Instantiate(laserCursor, new Vector3(0, 0, 0), Quaternion.identity);
+            //laserCursor.transform.position = new Vector3(0, 0, 0);
         }
-        Debug.Log ("Canvas mode: " + shootCanvas.renderMode);
+        //Debug.Log ("Canvas mode: " + shootCanvas.renderMode);
 
 		if (VRDevice.isPresent) {
 			foreach (Camera cam in Camera.allCameras) {
@@ -58,7 +60,7 @@ public class FP_Shooting : MonoBehaviour {
         {
             if (Physics.Raycast(laser_sight, out laser_aim, laserRange))
             {
-                laserCursor.transform.position = laser_aim.point;
+                cursor.transform.position = laser_aim.point;
             }
         }
         
