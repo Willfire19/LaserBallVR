@@ -24,6 +24,12 @@ public class FirstPersonController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+        // Only use this for debugging. Don't put this is final release
+        if ( Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
+
 		//transform.Rotate
 
 		// If using Oculus Rift, movement will not work because movement is look input from mouse or right stick

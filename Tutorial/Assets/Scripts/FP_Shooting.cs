@@ -16,6 +16,7 @@ public class FP_Shooting : MonoBehaviour {
 	public GameObject laserGunTip;
 	public GameObject laserDebrisPrefab;
 	public GameObject laserTrail;
+    public GameObject laserCursor;
 
 	private AudioSource audioSrc;
 	public AudioClip shootFX;
@@ -28,7 +29,10 @@ public class FP_Shooting : MonoBehaviour {
 		audioSrc = GetComponent<AudioSource> ();
 		laserGunTip = GameObject.Find ("GunTip");
 		shootCanvas = GameObject.Find ("Canvas").GetComponent<Canvas> ();
-		Debug.Log ("Canvas mode: " + shootCanvas.renderMode);
+        if (laserCursor != null) {
+            Instantiate(laserCursor, new Vector3(0, 0, 0), Quaternion.identity);
+        }
+        Debug.Log ("Canvas mode: " + shootCanvas.renderMode);
 
 		if (VRDevice.isPresent) {
 			foreach (Camera cam in Camera.allCameras) {
@@ -47,6 +51,17 @@ public class FP_Shooting : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		laserCoolDownRemaining -= Time.deltaTime;
+        Ray laser_sight = new Ray(Camera.main.transform.position + Camera.main.transform.forward, Camera.main.transform.forward);
+        RaycastHit laser_aim;
+
+        if (laserCursor != null)
+        {
+            if (Physics.Raycast(laser_sight, out laser_aim, laserRange))
+            {
+                laserCursor.transform.position = laser_aim.point;
+            }
+        }
+        
 
 		if (Input.GetAxis ("Fire1") > 0.5 && laserCoolDownRemaining <= 0) {
 			laserCoolDownRemaining = laserFireRate;
