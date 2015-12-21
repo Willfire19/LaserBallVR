@@ -28,6 +28,7 @@ public class FP_Shooting : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		audioSrc = GetComponent<AudioSource> ();
+        // Does .Find find all GunTips, or just the one that is attached to the current player?
 		laserGunTip = GameObject.Find ("GunTip");
 		//shootCanvas = GameObject.Find ("Canvas").GetComponent<Canvas> ();
         if (laserCursor != null) {
