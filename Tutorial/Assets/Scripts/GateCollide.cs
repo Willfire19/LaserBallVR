@@ -1,12 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class GateCollide : MonoBehaviour {
 
-    //GameObject gate;
+	GameObject playerHUD;
+	Text gameWin;
 	// Use this for initialization
 	void Start () {
-        //gate = gameObject;
+		playerHUD = GameObject.Find ("PlayerHUD");
+		gameWin = playerHUD.transform.Find ("GameStatus/GameStatusText").GetComponent<Text> ();
 	}
 
     void OnTriggerEnter(Collider other)
@@ -14,6 +17,7 @@ public class GateCollide : MonoBehaviour {
         if( other.gameObject.name == "Player")
         {
             Debug.Log("You Won!");
+			gameWin.text = "You Won!";
         }
     }
 	
