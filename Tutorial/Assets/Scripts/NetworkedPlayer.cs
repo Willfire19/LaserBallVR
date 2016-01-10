@@ -5,8 +5,11 @@ public class NetworkedPlayer : Photon.MonoBehaviour
 {
 	public GameObject avatar;
 
-	public Transform playerGlobal;
-	public Transform playerLocal;
+	public GameObject avatarBody;
+	public GameObject avatarHead;
+
+	public Transform playerBody;
+	public Transform playerHead;
 
 	void Start ()
 	{
@@ -16,13 +19,15 @@ public class NetworkedPlayer : Photon.MonoBehaviour
 		{
 			Debug.Log("player is mine");
 
-			playerGlobal = GameObject.Find("Player").transform;
-			playerLocal = playerGlobal.Find("Main Camera");
+			playerBody = GameObject.Find("Player").transform.Find("Player_Body");
+			//playerLocal = playerGlobal.Find("Main Camera");
 
-			this.transform.SetParent(playerLocal);
+			this.transform.SetParent(playerBody);
 			this.transform.localPosition = Vector3.zero;
 
-			// avatar.SetActive(false);
+			avatar.SetActive (false);
+			avatarBody.SetActive(false);
+			avatarHead.SetActive(false);
 		}
 	}
 
@@ -30,15 +35,15 @@ public class NetworkedPlayer : Photon.MonoBehaviour
 	{
 		if (stream.isWriting)
 		{
-			stream.SendNext(playerGlobal.position);
-			stream.SendNext(playerGlobal.rotation);
-			stream.SendNext(playerLocal.localPosition);
-			stream.SendNext(playerLocal.localRotation);
+			stream.SendNext(playerBody.position);
+			stream.SendNext(playerBody.rotation);
+			//stream.SendNext(playerLocal.localPosition);
+			//stream.SendNext(playerLocal.localRotation);
 		}
 		else
 		{
-			this.transform.position = (Vector3)stream.ReceiveNext();
-			this.transform.rotation = (Quaternion)stream.ReceiveNext();
+			//this.transform.position = (Vector3)stream.ReceiveNext();
+			//this.transform.rotation = (Quaternion)stream.ReceiveNext();
 			avatar.transform.localPosition = (Vector3)stream.ReceiveNext();
 			avatar.transform.localRotation = (Quaternion)stream.ReceiveNext();
 		}
