@@ -3,10 +3,15 @@ using System.Collections;
 
 public class NetworkedPlayer : Photon.MonoBehaviour
 {
-	public GameObject avatar;
+	//public GameObject avatar;
 
-	public Transform playerGlobal;
-	public Transform playerLocal;
+	public GameObject avatarBody;
+	public GameObject avatarHead;
+
+	public Transform player;
+
+	public Transform playerBody;
+	public Transform playerHead;
 
 	void Start ()
 	{
@@ -16,13 +21,16 @@ public class NetworkedPlayer : Photon.MonoBehaviour
 		{
 			Debug.Log("player is mine");
 
-			playerGlobal = GameObject.Find("Player").transform;
-			playerLocal = playerGlobal.Find("Main Camera");
+			player = GameObject.Find ("Player").transform;
+			playerBody = player.Find("Player_Body");
+			playerHead = player.Find("Main Camera");
 
-			this.transform.SetParent(playerLocal);
+			this.transform.SetParent(player);
 			this.transform.localPosition = Vector3.zero;
 
-			// avatar.SetActive(false);
+			//avatar.SetActive (false);
+			avatarBody.SetActive(false);
+			avatarHead.SetActive(false);
 		}
 	}
 
@@ -30,17 +38,26 @@ public class NetworkedPlayer : Photon.MonoBehaviour
 	{
 		if (stream.isWriting)
 		{
-			stream.SendNext(playerGlobal.position);
-			stream.SendNext(playerGlobal.rotation);
-			stream.SendNext(playerLocal.localPosition);
-			stream.SendNext(playerLocal.localRotation);
+			stream.SendNext(player.position);
+			stream.SendNext(player.rotation);
+			stream.SendNext(playerBody.localPosition);
+			stream.SendNext(playerBody.localRotation);
+			stream.SendNext(playerHead.localPosition);
+			stream.SendNext(playerHead.localRotation);
 		}
 		else
 		{
 			this.transform.position = (Vector3)stream.ReceiveNext();
 			this.transform.rotation = (Quaternion)stream.ReceiveNext();
-			avatar.transform.localPosition = (Vector3)stream.ReceiveNext();
-			avatar.transform.localRotation = (Quaternion)stream.ReceiveNext();
+
+			avatarBody.transform.localPosition = (Vector3)stream.ReceiveNext();
+			avatarBody.transform.localRotation = (Quaternion)stream.ReceiveNext();
+
+			//avatar.transform.position = this.transform.position;
+			//avatar.transform.rotation = this.transform.rotation;
+			avatarHead.transform.localPosition = (Vector3)stream.ReceiveNext();
+			//avatarHead.transform.localPosition = this.transform.position + new Vector3(0, 1, 0);
+			avatarHead.transform.localRotation = (Quaternion)stream.ReceiveNext();
 		}
 	}
 }
