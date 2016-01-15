@@ -13,7 +13,7 @@ public class FP_Shooting : MonoBehaviour {
 	public float laserDamage = 10.0f;
 	private float lastFire = 0.0f;
 
-	public GameObject laserGunTip;
+	public Transform laserGunTip;
 	public GameObject laserDebrisPrefab;
 	public GameObject laserTrail;
     public GameObject laserCursor;
@@ -29,7 +29,9 @@ public class FP_Shooting : MonoBehaviour {
 	void Start () {
 		audioSrc = GetComponent<AudioSource> ();
         // Does .Find find all GunTips, or just the one that is attached to the current player?
-		laserGunTip = GameObject.Find ("GunTip");
+		//laserGunTip = GameObject.Find ("GunTip");
+		//laserGunTip = GameObject.Find("Player").transform.Find("BitGun").transform.Find("GunTip");
+		laserGunTip = transform.Find("Main Camera/Bit Gun/GunTip");
 		//shootCanvas = GameObject.Find ("Canvas").GetComponent<Canvas> ();
         if (laserCursor != null) {
             cursor = (GameObject)Instantiate(laserCursor, new Vector3(0, 0, 0), Quaternion.identity);
@@ -67,47 +69,67 @@ public class FP_Shooting : MonoBehaviour {
         
 
 		if (Input.GetAxis ("Fire1") > 0.5 && laserCoolDownRemaining <= 0) {
-			laserCoolDownRemaining = laserFireRate;
-			Ray laser_ray = new Ray (Camera.main.transform.position + Camera.main.transform.forward, Camera.main.transform.forward);
-			RaycastHit hitInfo;
-
-			if (Physics.Raycast (laser_ray, out hitInfo, laserRange)) {
-				audioSrc.PlayOneShot(shootFX);
-				Vector3 hitPoint = hitInfo.point;
-				GameObject gameHit = hitInfo.collider.gameObject;
-				//Debug.Log ("GameObject Hit: " + gameHit.name);
-				//Debug.Log ("Hit Point: " + hitPoint);
-
-				if (laserDebrisPrefab != null) {
-					Instantiate (laserDebrisPrefab, hitPoint, Quaternion.identity);
-				}
-
-				if (laserTrail != null){
-					// laserTrail.GetComponent<LineRenderer>().SetPosition(0, Camera.main.transform.position + Camera.main.transform.forward);
-					laserTrail.GetComponent<LineRenderer>().SetPosition(0, laserGunTip.transform.position);
-					laserTrail.GetComponent<LineRenderer>().SetPosition(1, hitPoint);
-					Instantiate (laserTrail);
-					
-				}
-
-				HasHealth hitObject = gameHit.GetComponent<HasHealth>();
-				if(hitObject != null){
-					hitObject.RecieveDamage(laserDamage);
-				}
-			}
+			Fire1 ();
 		}
 	
 		if (Input.GetButton("Fire2") && Time.time > fireRate + lastFire) {
 			lastFire = Time.time;
-			Fire ();
+			ThrowGrenade ();
 		}
 	}
 
-	// method to dictate firing
-	void Fire () {
+	// method to dictate grenade throwing
+	void ThrowGrenade () {
 		Camera cam = Camera.main;
 		GameObject theBullet = (GameObject)(Instantiate (bullet_prefab, cam.transform.position + cam.transform.forward, cam.transform.rotation));
 		theBullet.GetComponent<Rigidbody>().AddForce (cam.transform.forward * bulletImpulse, ForceMode.Impulse);
 	}
+
+	// method to dictate firing laser
+	void Fire1 () {
+	
+		laserCoolDownRemaining = laserFireRate;
+		Ray laser_ray = new Ray (Camera.main.transform.position + Camera.main.transform.forward, Camera.main.transform.forward);
+		RaycastHit hitInfo;
+
+		if (Physics.Raycast (laser_ray, out hitInfo, laserRange)) {
+			audioSrc.PlayOneShot(shootFX);
+			Vector3 hitPoint = hitInfo.point;
+			GameObject gameHit = hitInfo.collider.gameObject;
+			//Debug.Log ("GameObject Hit: " + gameHit.name);
+			//Debug.Log ("Hit Point: " + hitPoint);
+
+			//RenderFire (laserGunTip.position, hitPoint);
+			//ArrayList parameters = new ArrayList();
+			//parameters.Add (laserGunTip.position);
+			//parameters.Add (hitPoint);
+			//Debug.Log (this);
+			this.GetComponent<PhotonView>().RPC ("RenderFire", PhotonTargets.All, laserGunTip.position, hitPoint );
+
+			HasHealth hitObject = gameHit.GetComponent<HasHealth>();
+			if(hitObject != null){
+				hitObject.RecieveDamage(laserDamage);
+			}
+		}
+
+	}
+
+	[PunRPC]
+	void RenderFire ( Vector3 origin, Vector3 destination) {
+		if (laserDebrisPrefab != null) {
+			//Instantiate (laserDebrisPrefab, hitPoint, Quaternion.identity);
+			Instantiate (laserDebrisPrefab, destination, Quaternion.identity);
+		}
+
+		if (laserTrail != null){
+			// laserTrail.GetComponent<LineRenderer>().SetPosition(0, Camera.main.transform.position + Camera.main.transform.forward);
+			laserTrail.GetComponent<LineRenderer>().SetPosition(0, origin);
+			//laserTrail.GetComponent<LineRenderer>().SetPosition(1, hitPoint);
+			laserTrail.GetComponent<LineRenderer>().SetPosition(1, destination);
+			Instantiate (laserTrail);
+
+		}
+	}
+
 
 }
