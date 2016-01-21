@@ -123,10 +123,13 @@ public class FP_Shooting : MonoBehaviour {
 
 		if (laserTrail != null){
 			// laserTrail.GetComponent<LineRenderer>().SetPosition(0, Camera.main.transform.position + Camera.main.transform.forward);
+			laserTrail.GetComponent<LineRenderer>().SetVertexCount(2);
 			laserTrail.GetComponent<LineRenderer>().SetPosition(0, origin);
 			//laserTrail.GetComponent<LineRenderer>().SetPosition(1, hitPoint);
 			laserTrail.GetComponent<LineRenderer>().SetPosition(1, destination);
-			Instantiate (laserTrail);
+			GameObject laserTrailInstance = Instantiate (laserTrail);
+			laserTrailInstance.GetComponent<SelfDestruct_Laser> ().SetEndPoints (origin, destination);
+
 
 		}
 	}
