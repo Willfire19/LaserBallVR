@@ -16,8 +16,6 @@ public class FirstPersonController : MonoBehaviour {
 	CharacterController characterController;
 	// Use this for initialization
 	void Start () {
-		Cursor.lockState = CursorLockMode.Locked;;
-		Cursor.visible = false;
 		characterController = GetComponent<CharacterController>();
 	}
 	
@@ -25,10 +23,10 @@ public class FirstPersonController : MonoBehaviour {
 	void Update () {
 
         // Only use this for debugging. Don't put this is final release
-        if ( Input.GetKeyDown(KeyCode.Escape))
-        {
-            Application.Quit();
-        }
+        //if ( Input.GetKeyDown(KeyCode.Escape))
+        //{
+        //    Application.Quit();
+        //}
 
 		//transform.Rotate
 
