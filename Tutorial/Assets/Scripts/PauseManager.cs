@@ -45,4 +45,9 @@ public class PauseManager : MonoBehaviour {
 	public void switchPause() {
 		isPaused = !isPaused;
 	}
+
+	public void QuitGameClicked() {
+		Debug.Log("Quit Game Button Clicked");
+		Application.Quit ();
+	}
 }

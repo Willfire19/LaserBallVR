@@ -75,8 +75,9 @@ GameObject:
   m_Component:
   - 224: {fileID: 22451852}
   - 114: {fileID: 11471944}
+  - 114: {fileID: 11440550}
   m_Layer: 5
-  m_Name: Slider
+  m_Name: VolumeSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -336,7 +337,6 @@ GameObject:
   - 222: {fileID: 22256100}
   - 114: {fileID: 11412586}
   - 114: {fileID: 11471076}
-  - 114: {fileID: 11480930}
   m_Layer: 5
   m_Name: QuitButton
   m_TagString: Untagged
@@ -871,8 +871,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
+  viewIdField: 1
+  instantiationId: 1
   isRuntimeInstantiated: 0
 --- !u!114 &11412586
 MonoBehaviour:
@@ -951,6 +951,17 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &11440550
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 128592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6fea5ddf2d222f4c88141436b96a9ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11448646
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1152,7 +1163,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11480930}
+      - m_Target: {fileID: 11430220}
         m_MethodName: QuitGameClicked
         m_Mode: 1
         m_Arguments:
@@ -1210,7 +1221,18 @@ MonoBehaviour:
   m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 11440550}
+        m_MethodName: VolumeChange
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Slider+SliderEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &11472714
@@ -1300,17 +1322,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &11480930
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 194700}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ebed9b6e9c285140af80545f765cc66, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!124 &12401432
 Behaviour:
   m_ObjectHideFlags: 1
