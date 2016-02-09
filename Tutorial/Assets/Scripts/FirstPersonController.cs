@@ -14,6 +14,7 @@ public class FirstPersonController : MonoBehaviour {
 
 	public float verticalVelocity = 0.0f;
 	CharacterController characterController;
+
 	// Use this for initialization
 	void Start () {
 		characterController = GetComponent<CharacterController>();
@@ -21,14 +22,6 @@ public class FirstPersonController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
-        // Only use this for debugging. Don't put this is final release
-        //if ( Input.GetKeyDown(KeyCode.Escape))
-        //{
-        //    Application.Quit();
-        //}
-
-		//transform.Rotate
 
 		// If using Oculus Rift, movement will not work because movement is look input from mouse or right stick
 		// When using VR, the camera becomes decoupled from the game object, so moving the camera doesn't rotate the game object
@@ -50,7 +43,6 @@ public class FirstPersonController : MonoBehaviour {
 			Camera.main.transform.localRotation = Quaternion.Euler (verticalRotation, 0, 0);
 		}
 
-
 		//Movement
 		float forwardSpeed = Input.GetAxis ("Vertical") * movementSpeed;
 		float sideSpeed = Input.GetAxis ("Horizontal") * movementSpeed;
@@ -65,19 +57,12 @@ public class FirstPersonController : MonoBehaviour {
 
 		Vector3 speed = new Vector3 (sideSpeed, verticalVelocity, forwardSpeed);
 
-		//if (Input.GetKeyDown ("space")) {
-		//				print ("space key was pressed");
-		//				speed = transform.rotation * speed * sprint;
-		//		}
-		//else
-
 		if (VRDevice.isPresent) {
 			//Debug.Log("Oculus Quaternion: " + InputTracking.GetLocalRotation (VRNode.CenterEye) );
 			//Debug.Log("Oculus Eular Angles: " + InputTracking.GetLocalRotation(VRNode.CenterEye).eulerAngles);
 			//speed = InputTracking.GetLocalRotation (VRNode.CenterEye) * speed;
 			speed = Quaternion.Euler( 0, InputTracking.GetLocalRotation(VRNode.Head).eulerAngles.y, 0 ) * speed;
-			//speed = transform.rotation * speed;
-			//speed = Camera.main.transform.forward + speed;
+
 		} 
 		else {
 			speed = transform.rotation * speed;
@@ -86,5 +71,17 @@ public class FirstPersonController : MonoBehaviour {
 
 		characterController.Move (speed * Time.deltaTime);
 
+	}
+
+	public void Pause(bool paused){
+		this.gameObject.GetComponent<FP_Shooting> ().StopFire (paused);
+
+		if (paused) {
+			movementSpeed = 0;
+			jumpSpeed = 0;
+		} else {
+			movementSpeed = 10.0f;
+			jumpSpeed = 20.0f;
+		}
 	}
 }
