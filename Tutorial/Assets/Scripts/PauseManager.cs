@@ -4,6 +4,7 @@ using System.Collections;
 
 public class PauseManager : MonoBehaviour {
 
+	public GameObject player;
 	public GameObject pausePanel;
 
 	public bool isPaused;
@@ -32,11 +33,12 @@ public class PauseManager : MonoBehaviour {
 
 	void PauseGame(bool state) {
 		pausePanel.SetActive (state);
+		player.GetComponent<FirstPersonController> ().Pause (state);
 
-		if (state) {
+		if (state) {			
 			Cursor.lockState = CursorLockMode.None;
 			Cursor.visible = true;
-		} else {
+		} else {			
 			Cursor.lockState = CursorLockMode.Locked;
 			Cursor.visible = false;
 		}
