@@ -354,12 +354,15 @@ GameObject:
   - 114: {fileID: 11457594}
   - 82: {fileID: 8249686}
 <<<<<<< HEAD
+<<<<<<< HEAD
   - 114: {fileID: 11481204}
   - 114: {fileID: 11478222}
   - 114: {fileID: 11406180}
 =======
   - 114: {fileID: 11406092}
 >>>>>>> origin/Multiplayer
+=======
+>>>>>>> parent of 565f532... Added Voicechat
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -821,7 +824,7 @@ AudioSource:
     serializedVersion: 2
     m_Curve:
     - time: 0
-      value: 0.499
+      value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -838,7 +841,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 0
+    m_RotationOrder: 4
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -874,6 +877,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+<<<<<<< HEAD
 <<<<<<< HEAD
 --- !u!114 &11406180
 =======
@@ -974,6 +978,8 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
 >>>>>>> origin/Multiplayer
+=======
+>>>>>>> parent of 565f532... Added Voicechat
 --- !u!114 &11415674
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1275,6 +1281,7 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: 
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!114 &11478222
 =======
 --- !u!114 &11459638
@@ -1442,6 +1449,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
 >>>>>>> origin/Multiplayer
+=======
+>>>>>>> parent of 565f532... Added Voicechat
 --- !u!124 &12401432
 Behaviour:
   m_ObjectHideFlags: 1

@@ -31,5 +31,4 @@ MonoBehaviour:
   - PunRespawn
   - RequestForPickupTimes
   - RenderFire
-  - vc
   DisableAutoOpenWizard: 1
