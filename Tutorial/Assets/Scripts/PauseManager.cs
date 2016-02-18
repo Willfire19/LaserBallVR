@@ -4,13 +4,15 @@ using System.Collections;
 
 public class PauseManager : MonoBehaviour {
 
-	public GameObject player;
-	public GameObject pausePanel;
+	GameObject player;
+	GameObject pausePanel;
 
 	public bool isPaused;
 
 	// Use this for initialization
 	void Start () {
+		player = gameObject;
+		pausePanel = GameObject.Find ("Player_Body/PauseCanvas");
 		isPaused = false;
 	
 	}

@@ -21,11 +21,12 @@ public class Enemy_AI : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-
-		if (Vector3.Distance (player.transform.position, transform.position) >= MaxDist) {
+		if (player != null) {
+			if (Vector3.Distance (player.transform.position, transform.position) >= MaxDist) {
 				Idle ();
-		} else {
+			} else {
 				Attack ();
+			}
 		}
 	
 	}

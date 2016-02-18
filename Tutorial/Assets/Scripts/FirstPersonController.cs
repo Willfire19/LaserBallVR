@@ -71,6 +71,11 @@ public class FirstPersonController : MonoBehaviour {
 
 		characterController.Move (speed * Time.deltaTime);
 
+		// Testing Player Death and respawn with a button press. This does not go to production
+		if (Input.GetButton("Fire3") ) {
+			Die();
+		}
+
 	}
 
 	public void Pause(bool paused){
@@ -83,5 +88,33 @@ public class FirstPersonController : MonoBehaviour {
 			movementSpeed = 10.0f;
 			jumpSpeed = 20.0f;
 		}
+	}
+
+	void Die() {
+		Debug.Log ("You died!");
+		GameObject.FindObjectOfType<NetworkController> ().respawnTimer = 3f;
+
+//		if (GetComponent<PhotonView> ().instantiationId == 0) {
+//			Debug.Log ("instantiationID is 0");
+//		}
+//		if (GetComponent<PhotonView> ().isMine) {
+//			Debug.Log ("PhotonView is Mine");
+////			GameObject.FindObjectOfType<NetworkController> ().respawnTimer = 3f;
+////			PhotonNetwork.Destroy (GetComponent<PhotonView> ());
+////			Debug.Log ("Networked Player deleted (hopefully)");
+//		}
+////		if (GetComponent<PhotonView> ().instantiationId == 0) {
+////			Destroy (gameObject);
+////		} else {
+////			if ( GetComponent<PhotonView>().isMine ) {
+////				if (gameObject.tag == "Player") {
+////					GameObject.FindObjectOfType<NetworkController> ().respawnTimer = 3f;
+////				}
+////				PhotonNetwork.Destroy (gameObject);
+////			}
+//////			if (PhotonNetwork.isMasterClient) {
+//////				PhotonNetwork.Destroy (gameObject);
+//////			}
+////		}
 	}
 }
