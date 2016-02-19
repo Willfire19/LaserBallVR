@@ -464,13 +464,13 @@ Prefab:
       propertyPath: m_RootOrder
       value: 8
       objectReference: {fileID: 0}
-    - target: {fileID: 11463476, guid: d4f23f63130fdc441a2e8503a82f4780, type: 2}
-      propertyPath: shootFX
-      value: 
-      objectReference: {fileID: 8300000, guid: 70bdf7c777325bb47b531b3cae737cd2, type: 3}
-    - target: {fileID: 11462744, guid: d4f23f63130fdc441a2e8503a82f4780, type: 2}
-      propertyPath: MaxDist
-      value: 10
+    - target: {fileID: 11487258, guid: d4f23f63130fdc441a2e8503a82f4780, type: 2}
+      propertyPath: viewIdField
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11487258, guid: d4f23f63130fdc441a2e8503a82f4780, type: 2}
+      propertyPath: instantiationId
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d4f23f63130fdc441a2e8503a82f4780, type: 2}
@@ -548,7 +548,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
 --- !u!1001 &1481684044
 Prefab:
   m_ObjectHideFlags: 0

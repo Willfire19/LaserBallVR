@@ -29,6 +29,7 @@ public class FP_Shooting : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+
 		audioSrc = GetComponent<AudioSource> ();
         // Does .Find find all GunTips, or just the one that is attached to the current player?
 		//laserGunTip = GameObject.Find ("GunTip");
@@ -103,22 +104,25 @@ public class FP_Shooting : MonoBehaviour {
 				//Debug.Log ("GameObject Hit: " + gameHit.name);
 				//Debug.Log ("Hit Point: " + hitPoint);
 
-				//RenderFire (laserGunTip.position, hitPoint);
-				//ArrayList parameters = new ArrayList();
-				//parameters.Add (laserGunTip.position);
-				//parameters.Add (hitPoint);
-				//Debug.Log (this);
-				this.GetComponent<PhotonView> ().RPC ("RenderFire", PhotonTargets.All, laserGunTip.position, hitPoint);
+				this.GetComponent<PhotonView>().RPC ("RenderFire", PhotonTargets.All, laserGunTip.position, hitPoint);
 
-				HasHealth hitObject = gameHit.GetComponent<HasHealth> ();
-				if (hitObject != null) {
-					hitObject.RecieveDamage (laserDamage);
+				HasHealth playerHit = gameHit.GetComponent<HasHealth> ();
+
+				if (playerHit != null) {
+					playerHit.GetComponent<PhotonView>().RPC ("RecieveDamage", PhotonTargets.All, laserDamage);
 				}
+
+
 			}
 
 		}
 
 	}
+
+//	[PunRPC]
+//	void DealDamage (float damage){
+//		playerHit.RecieveDamage (damage);
+//	}
 
 	[PunRPC]
 	void RenderFire ( Vector3 origin, Vector3 destination) {

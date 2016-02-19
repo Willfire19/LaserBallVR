@@ -16,6 +16,7 @@ GameObject:
   - 143: {fileID: 14385714}
   - 114: {fileID: 11463476}
   - 82: {fileID: 8253258}
+  - 114: {fileID: 11487258}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -167,7 +168,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   MinDist: 0
-  MaxDist: 1000000
+  MaxDist: 10
 --- !u!114 &11463476
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -186,6 +187,31 @@ MonoBehaviour:
   gunDebrisPrefab: {fileID: 121660, guid: 078b28f01518ea44cac426b573457dfa, type: 2}
   gunTrail: {fileID: 172240, guid: 583d57f56cc292744a3b0a9c23595437, type: 2}
   shootFX: {fileID: 8300000, guid: 70bdf7c777325bb47b531b3cae737cd2, type: 3}
+--- !u!114 &11487258
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 146104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ownerId: 0
+  group: 0
+  prefixBackup: -1
+  observed: {fileID: 0}
+  synchronization: 0
+  onSerializeTransformOption: 3
+  onSerializeRigidBodyOption: 2
+  ownershipTransfer: 0
+  ObservedComponents:
+  - {fileID: 0}
+  ObservedComponentsFoldoutOpen: 1
+  viewIdField: 0
+  instantiationId: -1
+  isRuntimeInstantiated: 0
 --- !u!136 &13696038
 CapsuleCollider:
   m_ObjectHideFlags: 1

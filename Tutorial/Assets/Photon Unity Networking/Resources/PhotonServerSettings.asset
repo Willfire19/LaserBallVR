@@ -31,4 +31,6 @@ MonoBehaviour:
   - PunRespawn
   - RequestForPickupTimes
   - RenderFire
+  - DealDamage
+  - RecieveDamage
   DisableAutoOpenWizard: 1
