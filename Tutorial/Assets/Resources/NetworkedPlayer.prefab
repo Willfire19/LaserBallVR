@@ -79,9 +79,11 @@ GameObject:
   - 4: {fileID: 407334}
   - 114: {fileID: 11472550}
   - 114: {fileID: 11448662}
+  - 114: {fileID: 11429522}
+  - 136: {fileID: 13652946}
   m_Layer: 0
   m_Name: NetworkedPlayer
-  m_TagString: Untagged
+  m_TagString: NetworkedPlayer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -257,7 +259,7 @@ BoxCollider:
   m_GameObject: {fileID: 148732}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -278,6 +280,18 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &11429522
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 183982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3d70f5daa58cd744994647a7d4d9caa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitPoints: 100
 --- !u!114 &11448662
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -289,7 +303,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9217b9d468992344fbe821fc58e22f84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  avatar: {fileID: 0}
   avatarBody: {fileID: 167156}
   avatarHead: {fileID: 148732}
   player: {fileID: 0}
@@ -328,11 +341,24 @@ CapsuleCollider:
   m_GameObject: {fileID: 167156}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.5
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!136 &13652946
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 183982}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.72353077
+  m_Height: 4.1262236
+  m_Direction: 1
+  m_Center: {x: 0, y: -1.9, z: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -375,6 +401,18 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: avatarHead
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_TagString
+      value: NetworkedPlayer
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Center.y
+      value: -1.9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

@@ -7,7 +7,11 @@ public class HasHealth : MonoBehaviour {
 
 	[PunRPC]
 	public void RecieveDamage( float hit_amount ){
+		Debug.Log ("Object was hit");
 		hitPoints -= hit_amount;
+		if (gameObject.CompareTag("NetworkedPlayer")) {
+			Debug.Log ("NeworkedPlayer is taking damage!");
+		}
 		if( hitPoints <= 0 ){
 			Die();
 		}
@@ -15,6 +19,14 @@ public class HasHealth : MonoBehaviour {
 
 	public void Die(){
 		// DeathAnimation()
-		Destroy (gameObject);
+		if (GetComponent<PhotonView>().instantiationId == 0) {
+			Debug.Log (gameObject.name + " died!");
+			if (!gameObject.CompareTag ("Player")) {
+				Destroy (gameObject);
+			}
+		}
+//		else {
+//			if( 
+
 	}
 }
