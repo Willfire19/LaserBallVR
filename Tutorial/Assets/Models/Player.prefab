@@ -353,13 +353,7 @@ GameObject:
   - 114: {fileID: 11448646}
   - 114: {fileID: 11457594}
   - 82: {fileID: 8249686}
-<<<<<<< HEAD
-  - 114: {fileID: 11481204}
-  - 114: {fileID: 11478222}
-  - 114: {fileID: 11406180}
-=======
   - 114: {fileID: 11406092}
->>>>>>> origin/Multiplayer
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -874,9 +868,6 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-<<<<<<< HEAD
---- !u!114 &11406180
-=======
 --- !u!114 &11404218
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -911,7 +902,6 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: Music Volume
 --- !u!114 &11406092
->>>>>>> origin/Multiplayer
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -919,16 +909,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 184102}
   m_Enabled: 1
   m_EditorHideFlags: 0
-<<<<<<< HEAD
-  m_Script: {fileID: 11500000, guid: 6e00d42098a712e4bb865682007cfe50, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  IsThreeDimensional: 1
-  Equalize: 0
-  EqualizeSpeed: 1
-  TargetEqualizeVolume: 0.75
-  MaxEqualization: 5
-=======
   m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -973,7 +953,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
->>>>>>> origin/Multiplayer
 --- !u!114 &11415674
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1065,8 +1044,6 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-<<<<<<< HEAD
-=======
   m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   m_Type: 0
   m_PreserveAspect: 0
@@ -1259,7 +1236,6 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
->>>>>>> origin/Multiplayer
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 60
@@ -1274,27 +1250,11 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 
-<<<<<<< HEAD
---- !u!114 &11478222
-=======
 --- !u!114 &11459638
->>>>>>> origin/Multiplayer
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-<<<<<<< HEAD
-  m_GameObject: {fileID: 184102}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ffec5f994190bb340a197dbfb8289f8c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DebugAudio: 0
-  Mute: 0
-  photonView: {fileID: 11481204}
---- !u!114 &11481204
-=======
   m_GameObject: {fileID: 145108}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -1343,33 +1303,10 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &11482768
->>>>>>> origin/Multiplayer
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-<<<<<<< HEAD
-  m_GameObject: {fileID: 184102}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ownerId: 0
-  group: 0
-  prefixBackup: -1
-  observed: {fileID: 0}
-  synchronization: 0
-  onSerializeTransformOption: 3
-  onSerializeRigidBodyOption: 2
-  ownershipTransfer: 0
-  ObservedComponents:
-  - {fileID: 0}
-  ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
-  isRuntimeInstantiated: 0
-=======
   m_GameObject: {fileID: 121764}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -1441,7 +1378,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
->>>>>>> origin/Multiplayer
 --- !u!124 &12401432
 Behaviour:
   m_ObjectHideFlags: 1
