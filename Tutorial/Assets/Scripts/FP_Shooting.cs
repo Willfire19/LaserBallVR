@@ -25,6 +25,8 @@ public class FP_Shooting : MonoBehaviour {
 	public bool rightEyeDominant = true;
 	public Canvas shootCanvas;
 
+	private bool canFire = true;
+
 	// Use this for initialization
 	void Start () {
 		audioSrc = GetComponent<AudioSource> ();
@@ -87,29 +89,33 @@ public class FP_Shooting : MonoBehaviour {
 
 	// method to dictate firing laser
 	void Fire1 () {
+
+		if (canFire) {
 	
-		laserCoolDownRemaining = laserFireRate;
-		Ray laser_ray = new Ray (Camera.main.transform.position + Camera.main.transform.forward, Camera.main.transform.forward);
-		RaycastHit hitInfo;
+			laserCoolDownRemaining = laserFireRate;
+			Ray laser_ray = new Ray (Camera.main.transform.position + Camera.main.transform.forward, Camera.main.transform.forward);
+			RaycastHit hitInfo;
 
-		if (Physics.Raycast (laser_ray, out hitInfo, laserRange)) {
-			audioSrc.PlayOneShot(shootFX);
-			Vector3 hitPoint = hitInfo.point;
-			GameObject gameHit = hitInfo.collider.gameObject;
-			//Debug.Log ("GameObject Hit: " + gameHit.name);
-			//Debug.Log ("Hit Point: " + hitPoint);
+			if (Physics.Raycast (laser_ray, out hitInfo, laserRange)) {
+				audioSrc.PlayOneShot (shootFX);
+				Vector3 hitPoint = hitInfo.point;
+				GameObject gameHit = hitInfo.collider.gameObject;
+				//Debug.Log ("GameObject Hit: " + gameHit.name);
+				//Debug.Log ("Hit Point: " + hitPoint);
 
-			//RenderFire (laserGunTip.position, hitPoint);
-			//ArrayList parameters = new ArrayList();
-			//parameters.Add (laserGunTip.position);
-			//parameters.Add (hitPoint);
-			//Debug.Log (this);
-			this.GetComponent<PhotonView>().RPC ("RenderFire", PhotonTargets.All, laserGunTip.position, hitPoint );
+				//RenderFire (laserGunTip.position, hitPoint);
+				//ArrayList parameters = new ArrayList();
+				//parameters.Add (laserGunTip.position);
+				//parameters.Add (hitPoint);
+				//Debug.Log (this);
+				this.GetComponent<PhotonView> ().RPC ("RenderFire", PhotonTargets.All, laserGunTip.position, hitPoint);
 
-			HasHealth hitObject = gameHit.GetComponent<HasHealth>();
-			if(hitObject != null){
-				hitObject.RecieveDamage(laserDamage);
+				HasHealth hitObject = gameHit.GetComponent<HasHealth> ();
+				if (hitObject != null) {
+					hitObject.RecieveDamage (laserDamage);
+				}
 			}
+
 		}
 
 	}
@@ -134,5 +140,7 @@ public class FP_Shooting : MonoBehaviour {
 		}
 	}
 
-
+	public void StopFire(bool paused){
+		canFire = !paused;
+	}
 }
