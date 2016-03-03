@@ -415,14 +415,6 @@ Prefab:
       propertyPath: instantiationId
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 11430220, guid: c39fc6e08ff39a24da83ce0ba7efea99, type: 2}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 795417954}
-    - target: {fileID: 11406092, guid: c39fc6e08ff39a24da83ce0ba7efea99, type: 2}
-      propertyPath: ObservedComponentsFoldoutOpen
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c39fc6e08ff39a24da83ce0ba7efea99, type: 2}
   m_IsPrefabParent: 0

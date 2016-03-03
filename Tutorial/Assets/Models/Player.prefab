@@ -354,6 +354,7 @@ GameObject:
   - 82: {fileID: 8249686}
   - 114: {fileID: 11406092}
   - 114: {fileID: 11465840}
+  - 114: {fileID: 11440562}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1141,6 +1142,18 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Slider+SliderEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &11440562
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 184102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3d70f5daa58cd744994647a7d4d9caa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitPoints: 100
 --- !u!114 &11448646
 MonoBehaviour:
   m_ObjectHideFlags: 1

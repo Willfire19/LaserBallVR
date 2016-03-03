@@ -68,8 +68,8 @@ LineRenderer:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_Positions:
-  - {x: -16.430481, y: -2.3510783, z: -2.0687373}
-  - {x: -14.050625, y: -3.4425569, z: -9.12127}
+  - {x: -27.272213, y: -2.6207988, z: -21.294672}
+  - {x: -24.05503, y: -4.6689057, z: -15.4466915}
   m_Parameters:
     startWidth: 0.1
     endWidth: 0.1
