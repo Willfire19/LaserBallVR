@@ -40,6 +40,7 @@ public class HasHealth : MonoBehaviour {
 			// Check if the dead person is the player
 			if (gameObject.CompareTag ("Player")) {
 				Debug.Log ("Player died!");
+				gameObject.GetComponent<FirstPersonController> ().Die ();
 			} else {				
 				gameObject.active = false;
 			}

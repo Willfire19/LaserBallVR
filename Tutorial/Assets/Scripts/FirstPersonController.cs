@@ -12,6 +12,9 @@ public class FirstPersonController : MonoBehaviour {
 	public float sprint = 2.0f;
 	public float jumpSpeed = 20.0f;
 
+	public bool isDead = false;
+	private bool isPaused = false;
+
 	public float verticalVelocity = 0.0f;
 	CharacterController characterController;
 
@@ -79,9 +82,25 @@ public class FirstPersonController : MonoBehaviour {
 	}
 
 	public void Pause(bool paused){
+
+		if (!isDead) {
+			isPaused = !isPaused;
+			if (isPaused) {
+				this.gameObject.GetComponent<FP_Shooting> ().StopFire (isPaused);
+				movementSpeed = 0;
+				jumpSpeed = 0;
+			} else {
+				movementSpeed = 10.0f;
+				jumpSpeed = 20.0f;
+			}
+		}
+
+
+
+
 		this.gameObject.GetComponent<FP_Shooting> ().StopFire (paused);
 
-		if (paused) {
+		if (paused || isDead) {
 			movementSpeed = 0;
 			jumpSpeed = 0;
 		} else {
@@ -90,8 +109,10 @@ public class FirstPersonController : MonoBehaviour {
 		}
 	}
 
-	void Die() {
+	public void Die() {
 		Debug.Log ("You died!");
+		isDead = true;
+		Pause (true);
 		GameObject.FindObjectOfType<NetworkController> ().respawnTimer = 3f;
 
 //		if (GetComponent<PhotonView> ().instantiationId == 0) {
