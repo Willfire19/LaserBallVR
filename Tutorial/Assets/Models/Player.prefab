@@ -354,9 +354,6 @@ GameObject:
   - 114: {fileID: 11457594}
   - 82: {fileID: 8249686}
   - 114: {fileID: 11406092}
-  - 114: {fileID: 11484712}
-  - 114: {fileID: 11477268}
-  - 114: {fileID: 11410594}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -929,21 +926,6 @@ MonoBehaviour:
   viewIdField: 0
   instantiationId: -1
   isRuntimeInstantiated: 0
---- !u!114 &11410594
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 184102}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca697a6f27a261442a2c082beee1b411, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ChunkSize: 640
-  Mode: 1
-  PushToTalk: 44
-  AmplitudeThreshold: 0
 --- !u!114 &11414944
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1321,22 +1303,6 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
---- !u!114 &11477268
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 184102}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e00d42098a712e4bb865682007cfe50, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  IsThreeDimensional: 1
-  Equalize: 0
-  EqualizeSpeed: 1
-  TargetEqualizeVolume: 0.75
-  MaxEqualization: 5
 --- !u!114 &11482768
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1370,20 +1336,6 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Quit
---- !u!114 &11484712
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 184102}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ffec5f994190bb340a197dbfb8289f8c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DebugAudio: 0
-  Mute: 0
-  photonView: {fileID: 11406092}
 --- !u!114 &11487858
 MonoBehaviour:
   m_ObjectHideFlags: 1
