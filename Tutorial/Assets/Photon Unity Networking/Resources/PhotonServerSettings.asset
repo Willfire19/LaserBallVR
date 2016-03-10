@@ -33,4 +33,5 @@ MonoBehaviour:
   - RenderFire
   - DealDamage
   - RecieveDamage
+  - RespawnNetworkedPlayer
   DisableAutoOpenWizard: 1

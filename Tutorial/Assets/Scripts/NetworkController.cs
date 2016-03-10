@@ -4,6 +4,7 @@ using System.Collections;
 public class NetworkController : MonoBehaviour
 {
 	public GameObject player;
+	public GameObject networkedPlayer;
 	public float respawnTimer = 0;
 
 	string _room = "Tutorial_Room";
@@ -21,7 +22,12 @@ public class NetworkController : MonoBehaviour
 				// Time to respawn the player!
 				Debug.Log ("Time to respawn player!");
 				//Instantiate (player, Vector3.zero, Quaternion.identity);
+				player.GetComponent<HasHealth> ().Heal (100f);
 				player.transform.position = Vector3.zero;
+				player.GetComponent<FirstPersonController> ().Enable ();
+				player.GetComponent<FirstPersonController> ().isDead = false;
+				networkedPlayer.SetActive(true);
+				//this.GetComponent<PhotonView>().RPC ("RespawnNetworkedPlayer", PhotonTargets.All);
 //				PhotonNetwork.Instantiate("NetworkedPlayer", Vector3.zero, Quaternion.identity, 0);
 			}
 		}
@@ -37,6 +43,11 @@ public class NetworkController : MonoBehaviour
 
 	void OnJoinedRoom()
 	{
-		PhotonNetwork.Instantiate("NetworkedPlayer", Vector3.zero, Quaternion.identity, 0);
+		networkedPlayer = PhotonNetwork.Instantiate("NetworkedPlayer", Vector3.zero, Quaternion.identity, 0);
+	}
+
+	[PunRPC]
+	void RespawnNetworkedPlayer() {
+		networkedPlayer.SetActive (true);
 	}
 }

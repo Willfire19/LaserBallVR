@@ -13,7 +13,7 @@ public class FirstPersonController : MonoBehaviour {
 	public float jumpSpeed = 20.0f;
 
 	public bool isDead = false;
-	private bool isPaused = false;
+	//private bool isPaused = false;
 
 	public float verticalVelocity = 0.0f;
 	CharacterController characterController;
@@ -81,38 +81,18 @@ public class FirstPersonController : MonoBehaviour {
 
 	}
 
-	public void Pause(bool paused){
-
-		if (!isDead) {
-			isPaused = !isPaused;
-			if (isPaused) {
-				this.gameObject.GetComponent<FP_Shooting> ().StopFire (isPaused);
-				movementSpeed = 0;
-				jumpSpeed = 0;
-			} else {
-				movementSpeed = 10.0f;
-				jumpSpeed = 20.0f;
-			}
-		}
-
-
-
-
-		this.gameObject.GetComponent<FP_Shooting> ().StopFire (paused);
-
-		if (paused || isDead) {
-			movementSpeed = 0;
-			jumpSpeed = 0;
-		} else {
-			movementSpeed = 10.0f;
-			jumpSpeed = 20.0f;
-		}
+	public void Pause(){
+		Disable ();
 	}
 
+	public void Resume() {
+		Enable ();
+	}
+		
 	public void Die() {
 		Debug.Log ("You died!");
 		isDead = true;
-		Pause (true);
+		Disable ();
 		GameObject.FindObjectOfType<NetworkController> ().respawnTimer = 3f;
 
 //		if (GetComponent<PhotonView> ().instantiationId == 0) {
@@ -137,5 +117,21 @@ public class FirstPersonController : MonoBehaviour {
 //////				PhotonNetwork.Destroy (gameObject);
 //////			}
 ////		}
+	}
+
+	public void Disable() {
+		Debug.Log ("Player disabled");
+		this.gameObject.GetComponent<FP_Shooting> ().CanFire (false);
+		movementSpeed = 0;
+		jumpSpeed = 0;
+	}
+
+	public void Enable() {
+		if (!isDead) {
+			Debug.Log ("Player Enabled");
+			this.gameObject.GetComponent<FP_Shooting> ().CanFire (true);
+			movementSpeed = 10.0f;
+			jumpSpeed = 20.0f;
+		}
 	}
 }

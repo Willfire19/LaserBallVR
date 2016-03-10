@@ -30,21 +30,24 @@ public class HasHealth : MonoBehaviour {
 			if (!gameObject.CompareTag ("Player")) {
 				Destroy (gameObject);
 			}
-			else {
-				Debug.Log( "Player died!");
-			}
 		} else {
 			// This means that the NetworkedPlayer is dead
 			// PhotonNetwork.Destroy( GetComponent<PhotonView>() );
 
 			// Check if the dead person is the player
 			if (gameObject.CompareTag ("Player")) {
-				Debug.Log ("Player died!");
 				gameObject.GetComponent<FirstPersonController> ().Die ();
-			} else {				
-				gameObject.active = false;
+			} else {
+				// This is the NetworkedPlayer
+				Debug.Log(gameObject.name + " will be deactivated");
+				//gameObject.SetActive(false);
+				gameObject.GetComponent<NetworkedPlayer>().Die();
 			}
 		} 
 
+	}
+
+	public void Heal(float healthPoints){
+		hitPoints = healthPoints;
 	}
 }

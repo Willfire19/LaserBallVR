@@ -119,11 +119,6 @@ public class FP_Shooting : MonoBehaviour {
 
 	}
 
-//	[PunRPC]
-//	void DealDamage (float damage){
-//		playerHit.RecieveDamage (damage);
-//	}
-
 	[PunRPC]
 	void RenderFire ( Vector3 origin, Vector3 destination) {
 		if (laserDebrisPrefab != null) {
@@ -144,7 +139,7 @@ public class FP_Shooting : MonoBehaviour {
 		}
 	}
 
-	public void StopFire(bool paused){
-		canFire = !paused;
+	public void CanFire(bool state){
+		canFire = state;
 	}
 }

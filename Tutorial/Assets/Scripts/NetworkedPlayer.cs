@@ -13,6 +13,10 @@ public class NetworkedPlayer : Photon.MonoBehaviour
 	public Transform playerBody;
 	public Transform playerHead;
 
+	// Next fields used for respawn
+	private float respawnTimer = 0f;
+	//private bool isDead = false;
+
 	void Start ()
 	{
 		Debug.Log("i'm instantiated");
@@ -31,6 +35,19 @@ public class NetworkedPlayer : Photon.MonoBehaviour
 			//avatar.SetActive (false);
 			avatarBody.SetActive(false);
 			avatarHead.SetActive(false);
+		}
+	}
+
+	void Update() {
+		if( respawnTimer > 0 ){
+			respawnTimer -= Time.deltaTime;
+
+			if (respawnTimer <= 0) {
+				// Time to respawn the player!
+				Debug.Log ("Time to respawn Networked player!");
+				gameObject.GetComponent<HasHealth> ().Heal (100f);
+				Enable ();
+			}
 		}
 	}
 
@@ -58,6 +75,27 @@ public class NetworkedPlayer : Photon.MonoBehaviour
 			avatarHead.transform.localPosition = (Vector3)stream.ReceiveNext();
 			//avatarHead.transform.localPosition = this.transform.position + new Vector3(0, 1, 0);
 			avatarHead.transform.localRotation = (Quaternion)stream.ReceiveNext();
+		}
+	}
+
+	public void Die() {
+		Disable();
+		respawnTimer = 3.2f;
+	}
+
+	void Enable(){
+		if (!photonView.isMine) {
+			avatarBody.SetActive (true);
+			avatarHead.SetActive (true);
+			gameObject.GetComponent<CapsuleCollider> ().enabled = true;
+		}
+	}
+
+	void Disable(){
+		if (!photonView.isMine) {
+			avatarBody.SetActive (false);
+			avatarHead.SetActive (false);
+			gameObject.GetComponent<CapsuleCollider> ().enabled = false;
 		}
 	}
 }
