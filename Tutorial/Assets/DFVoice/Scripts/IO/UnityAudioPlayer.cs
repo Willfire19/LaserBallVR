@@ -41,7 +41,8 @@ namespace DaikonForge.VoIP
 
 		void Start()
 		{
-			playClip = AudioClip.Create( "vc", frequency * 10, 1, frequency, false );
+            GetComponent<AudioSource>().ignoreListenerVolume = true;
+            playClip = AudioClip.Create( "vc", frequency * 10, 1, frequency, false );
 
 			// backwards compatibility
 			if( GetComponent<AudioSource>() == null )
