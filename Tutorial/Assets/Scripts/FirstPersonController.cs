@@ -12,6 +12,9 @@ public class FirstPersonController : MonoBehaviour {
 	public float sprint = 2.0f;
 	public float jumpSpeed = 20.0f;
 
+	public bool isDead = false;
+	//private bool isPaused = false;
+
 	public float verticalVelocity = 0.0f;
 	CharacterController characterController;
 
@@ -19,7 +22,7 @@ public class FirstPersonController : MonoBehaviour {
 	void Start () {
 		characterController = GetComponent<CharacterController>();
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
 
@@ -71,15 +74,62 @@ public class FirstPersonController : MonoBehaviour {
 
 		characterController.Move (speed * Time.deltaTime);
 
+		// Testing Player Death and respawn with a button press. This does not go to production
+		if (Input.GetButton("Fire3") ) {
+			Die();
+		}
+
 	}
 
-	public void Pause(bool paused){
-		this.gameObject.GetComponent<FP_Shooting> ().StopFire (paused);
+	public void Pause(){
+		Disable ();
+	}
 
-		if (paused) {
-			movementSpeed = 0;
-			jumpSpeed = 0;
-		} else {
+	public void Resume() {
+		Enable ();
+	}
+
+	public void Die() {
+		Debug.Log ("You died!");
+		isDead = true;
+		Disable ();
+		GameObject.FindObjectOfType<NetworkController> ().respawnTimer = 3f;
+
+		//		if (GetComponent<PhotonView> ().instantiationId == 0) {
+		//			Debug.Log ("instantiationID is 0");
+		//		}
+		//		if (GetComponent<PhotonView> ().isMine) {
+		//			Debug.Log ("PhotonView is Mine");
+		////			GameObject.FindObjectOfType<NetworkController> ().respawnTimer = 3f;
+		////			PhotonNetwork.Destroy (GetComponent<PhotonView> ());
+		////			Debug.Log ("Networked Player deleted (hopefully)");
+		//		}
+		////		if (GetComponent<PhotonView> ().instantiationId == 0) {
+		////			Destroy (gameObject);
+		////		} else {
+		////			if ( GetComponent<PhotonView>().isMine ) {
+		////				if (gameObject.tag == "Player") {
+		////					GameObject.FindObjectOfType<NetworkController> ().respawnTimer = 3f;
+		////				}
+		////				PhotonNetwork.Destroy (gameObject);
+		////			}
+		//////			if (PhotonNetwork.isMasterClient) {
+		//////				PhotonNetwork.Destroy (gameObject);
+		//////			}
+		////		}
+	}
+
+	public void Disable() {
+		Debug.Log ("Player disabled");
+		this.gameObject.GetComponent<FP_Shooting> ().CanFire (false);
+		movementSpeed = 0;
+		jumpSpeed = 0;
+	}
+
+	public void Enable() {
+		if (!isDead) {
+			Debug.Log ("Player Enabled");
+			this.gameObject.GetComponent<FP_Shooting> ().CanFire (true);
 			movementSpeed = 10.0f;
 			jumpSpeed = 20.0f;
 		}

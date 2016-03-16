@@ -16,8 +16,8 @@ public class FP_Shooting : MonoBehaviour {
 	public Transform laserGunTip;
 	public GameObject laserDebrisPrefab;
 	public GameObject laserTrail;
-    public GameObject laserCursor;
-    private GameObject cursor;
+	public GameObject laserCursor;
+	private GameObject cursor;
 
 	private AudioSource audioSrc;
 	public AudioClip shootFX;
@@ -29,17 +29,18 @@ public class FP_Shooting : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+
 		audioSrc = GetComponent<AudioSource> ();
-        // Does .Find find all GunTips, or just the one that is attached to the current player?
+		// Does .Find find all GunTips, or just the one that is attached to the current player?
 		//laserGunTip = GameObject.Find ("GunTip");
 		//laserGunTip = GameObject.Find("Player").transform.Find("BitGun").transform.Find("GunTip");
 		laserGunTip = transform.Find("Main Camera/Bit Gun/GunTip");
 		//shootCanvas = GameObject.Find ("Canvas").GetComponent<Canvas> ();
-        if (laserCursor != null) {
-            cursor = (GameObject)Instantiate(laserCursor, new Vector3(0, 0, 0), Quaternion.identity);
-            //laserCursor.transform.position = new Vector3(0, 0, 0);
-        }
-        //Debug.Log ("Canvas mode: " + shootCanvas.renderMode);
+		if (laserCursor != null) {
+			cursor = (GameObject)Instantiate(laserCursor, new Vector3(0, 0, 0), Quaternion.identity);
+			//laserCursor.transform.position = new Vector3(0, 0, 0);
+		}
+		//Debug.Log ("Canvas mode: " + shootCanvas.renderMode);
 
 		if (VRDevice.isPresent) {
 			foreach (Camera cam in Camera.allCameras) {
@@ -54,26 +55,26 @@ public class FP_Shooting : MonoBehaviour {
 			*/
 		}
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
 		laserCoolDownRemaining -= Time.deltaTime;
-        Ray laser_sight = new Ray(Camera.main.transform.position + Camera.main.transform.forward, Camera.main.transform.forward);
-        RaycastHit laser_aim;
+		Ray laser_sight = new Ray(Camera.main.transform.position + Camera.main.transform.forward, Camera.main.transform.forward);
+		RaycastHit laser_aim;
 
-        if (laserCursor != null)
-        {
-            if (Physics.Raycast(laser_sight, out laser_aim, laserRange))
-            {
-                cursor.transform.position = laser_aim.point;
-            }
-        }
-        
+		if (laserCursor != null)
+		{
+			if (Physics.Raycast(laser_sight, out laser_aim, laserRange))
+			{
+				cursor.transform.position = laser_aim.point;
+			}
+		}
+
 
 		if (Input.GetAxis ("Fire1") > 0.5 && laserCoolDownRemaining <= 0) {
 			Fire1 ();
 		}
-	
+
 		if (Input.GetButton("Fire2") && Time.time > fireRate + lastFire) {
 			lastFire = Time.time;
 			ThrowGrenade ();
@@ -91,7 +92,7 @@ public class FP_Shooting : MonoBehaviour {
 	void Fire1 () {
 
 		if (canFire) {
-	
+
 			laserCoolDownRemaining = laserFireRate;
 			Ray laser_ray = new Ray (Camera.main.transform.position + Camera.main.transform.forward, Camera.main.transform.forward);
 			RaycastHit hitInfo;
@@ -103,17 +104,15 @@ public class FP_Shooting : MonoBehaviour {
 				//Debug.Log ("GameObject Hit: " + gameHit.name);
 				//Debug.Log ("Hit Point: " + hitPoint);
 
-				//RenderFire (laserGunTip.position, hitPoint);
-				//ArrayList parameters = new ArrayList();
-				//parameters.Add (laserGunTip.position);
-				//parameters.Add (hitPoint);
-				//Debug.Log (this);
-				this.GetComponent<PhotonView> ().RPC ("RenderFire", PhotonTargets.All, laserGunTip.position, hitPoint);
+				this.GetComponent<PhotonView>().RPC ("RenderFire", PhotonTargets.All, laserGunTip.position, hitPoint);
 
-				HasHealth hitObject = gameHit.GetComponent<HasHealth> ();
-				if (hitObject != null) {
-					hitObject.RecieveDamage (laserDamage);
+				HasHealth playerHit = gameHit.GetComponent<HasHealth> ();
+
+				if (playerHit != null) {
+					playerHit.GetComponent<PhotonView>().RPC ("RecieveDamage", PhotonTargets.All, laserDamage);
 				}
+
+
 			}
 
 		}
@@ -140,7 +139,7 @@ public class FP_Shooting : MonoBehaviour {
 		}
 	}
 
-	public void StopFire(bool paused){
-		canFire = !paused;
+	public void CanFire(bool state){
+		canFire = state;
 	}
 }
