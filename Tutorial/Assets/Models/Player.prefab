@@ -924,8 +924,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 1
-  instantiationId: 1
+  viewIdField: 0
+  instantiationId: -1
   isRuntimeInstantiated: 0
 --- !u!114 &11414944
 MonoBehaviour:
@@ -997,8 +997,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a9d106adfaa298498abbe4fea945dd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 184102}
-  pausePanel: {fileID: 178716}
   isPaused: 0
 --- !u!114 &11431322
 MonoBehaviour:
@@ -1184,6 +1182,7 @@ MonoBehaviour:
   upDownRange: 75
   sprint: 2
   jumpSpeed: 20
+  isDead: 0
   verticalVelocity: 0
 --- !u!114 &11450514
 MonoBehaviour:

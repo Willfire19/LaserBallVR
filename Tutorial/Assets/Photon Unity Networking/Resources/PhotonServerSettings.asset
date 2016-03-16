@@ -32,4 +32,6 @@ MonoBehaviour:
   - RequestForPickupTimes
   - RenderFire
   - vc
+  - RecieveDamage
+  - RespawnNetworkedPlayer
   DisableAutoOpenWizard: 1
