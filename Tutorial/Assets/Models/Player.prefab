@@ -354,6 +354,7 @@ GameObject:
   - 114: {fileID: 11457594}
   - 82: {fileID: 8249686}
   - 114: {fileID: 11406092}
+  - 114: {fileID: 11435450}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -923,8 +924,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
+  viewIdField: 1
+  instantiationId: 1
   isRuntimeInstantiated: 0
 --- !u!114 &11414944
 MonoBehaviour:
@@ -1080,6 +1081,18 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &11435450
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 184102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3d70f5daa58cd744994647a7d4d9caa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitPoints: 100
 --- !u!114 &11437982
 MonoBehaviour:
   m_ObjectHideFlags: 1
