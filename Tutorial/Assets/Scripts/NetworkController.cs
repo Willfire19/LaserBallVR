@@ -12,6 +12,7 @@ public class NetworkController : MonoBehaviour
 	void Start()
 	{
 		PhotonNetwork.ConnectUsingSettings("0.1");
+		player = GameObject.FindGameObjectWithTag ("Player");
 	}
 
 	void Update() {

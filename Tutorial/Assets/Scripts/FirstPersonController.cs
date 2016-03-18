@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.VR;
 using System.Collections;
+using UnityEngine.UI;
 
 public class FirstPersonController : MonoBehaviour {
 
@@ -13,14 +14,19 @@ public class FirstPersonController : MonoBehaviour {
 	public float jumpSpeed = 20.0f;
 
 	public bool isDead = false;
+	private bool prevDeadState;
 	//private bool isPaused = false;
 
 	public float verticalVelocity = 0.0f;
 	CharacterController characterController;
 
+	GameObject playerHUD;
+
 	// Use this for initialization
 	void Start () {
 		characterController = GetComponent<CharacterController>();
+		//playerHUD = gameObject.Find ("Main Camera/PlayerHUD");
+		playerHUD = transform.Find("Main Camera/PlayerHUD").gameObject;
 	}
 
 	// Update is called once per frame
@@ -74,10 +80,15 @@ public class FirstPersonController : MonoBehaviour {
 
 		characterController.Move (speed * Time.deltaTime);
 
-		// Testing Player Death and respawn with a button press. This does not go to production
-		if (Input.GetButton("Fire3") ) {
-			Die();
+		if (prevDeadState != isDead) {
+			prevDeadState = isDead;
+			if (isDead) {
+				playerHUD.transform.Find ("GameStatus/GameStatusText").GetComponent<Text> ().text = "You Died";
+			} else {
+				playerHUD.transform.Find ("GameStatus/GameStatusText").GetComponent<Text> ().text = "";
+			}
 		}
+
 
 	}
 
