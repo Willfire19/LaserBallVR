@@ -3,6 +3,7 @@ using System.Collections;
 
 public class NetworkController : MonoBehaviour
 {
+	public GameObject playerPrefab;
 	public GameObject player;
 	public GameObject networkedPlayer;
 	public float respawnTimer = 0;
@@ -12,7 +13,14 @@ public class NetworkController : MonoBehaviour
 	void Start()
 	{
 		PhotonNetwork.ConnectUsingSettings("0.1");
-		player = GameObject.FindGameObjectWithTag ("Player");
+		//player = GameObject.FindGameObjectWithTag ("Player");
+		player = (GameObject)Instantiate(playerPrefab, new Vector3(0, 4, 0), Quaternion.identity);
+//		player = Resources.Load("Player", typeof(GameObject)) as GameObject;
+//		Debug.Log (player);
+//		if(player == null){
+//			Debug.Log (player);
+//		}
+		//player.transform.position = new Vector3 (0, 4, 0);
 	}
 
 	void Update() {
@@ -24,7 +32,8 @@ public class NetworkController : MonoBehaviour
 				Debug.Log ("Time to respawn player!");
 				//Instantiate (player, Vector3.zero, Quaternion.identity);
 				player.GetComponent<HasHealth> ().Heal (100f);
-				player.transform.position = Vector3.zero;
+//				player.transform.position = Vector3.zero;
+				player.transform.position = new Vector3(0, 4, 0);
 				player.GetComponent<FirstPersonController> ().Enable ();
 				player.GetComponent<FirstPersonController> ().isDead = false;
 				networkedPlayer.SetActive(true);

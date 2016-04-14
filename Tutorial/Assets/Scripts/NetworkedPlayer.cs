@@ -25,7 +25,12 @@ public class NetworkedPlayer : Photon.MonoBehaviour
 		{
 			Debug.Log("player is mine");
 
-			player = GameObject.Find ("Player").transform;
+			if (GameObject.Find ("Player") == null) {
+				player = GameObject.Find ("Player(Clone)").transform;
+			} else {
+				player = GameObject.Find ("Player").transform;
+			}
+
 			playerBody = player.Find("Player_Body");
 			playerHead = player.Find("Main Camera");
 
