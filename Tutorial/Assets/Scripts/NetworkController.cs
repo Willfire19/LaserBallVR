@@ -8,14 +8,23 @@ public class NetworkController : MonoBehaviour
 	public GameObject networkedPlayer;
 	public float respawnTimer = 0;
 
+	private GameObject[] spawnPoints;
+
 	string _room = "Tutorial_Room";
 
 	void Start()
 	{
 		PhotonNetwork.ConnectUsingSettings("0.1");
-		//player = GameObject.FindGameObjectWithTag ("Player");
-		player = (GameObject)Instantiate(playerPrefab, new Vector3(0, 4, 0), Quaternion.identity);
-//		player = Resources.Load("Player", typeof(GameObject)) as GameObject;
+		spawnPoints = GameObject.FindGameObjectsWithTag ("Respawn");
+
+		player = GameObject.FindGameObjectWithTag ("Player");
+		player.transform.position = spawnPoints [Random.Range (0, spawnPoints.Length)].transform.position;
+//		player = (GameObject)Instantiate(playerPrefab, new Vector3(0, 4, 0), Quaternion.identity);
+		//player = (GameObject)Instantiate(playerPrefab, spawnPoints [Random.Range(0, spawnPoints.Length)].transform.position, Quaternion.identity);
+
+//		player = Resources.Load<GameObject>("PlayerModel", typeof(GameObject)) as GameObject;
+		//player = (GameObject)Instantiate(Resources.Load<GameObject>("PlayerModel/Player"), spawnPoints [Random.Range(0, spawnPoints.Length)].transform.position, Quaternion.identity);
+
 //		Debug.Log (player);
 //		if(player == null){
 //			Debug.Log (player);
@@ -33,7 +42,7 @@ public class NetworkController : MonoBehaviour
 				//Instantiate (player, Vector3.zero, Quaternion.identity);
 				player.GetComponent<HasHealth> ().Heal (100f);
 //				player.transform.position = Vector3.zero;
-				player.transform.position = new Vector3(0, 4, 0);
+				player.transform.position = spawnPoints [Random.Range(0, spawnPoints.Length)].transform.position;
 				player.GetComponent<FirstPersonController> ().Enable ();
 				player.GetComponent<FirstPersonController> ().isDead = false;
 				networkedPlayer.SetActive(true);
