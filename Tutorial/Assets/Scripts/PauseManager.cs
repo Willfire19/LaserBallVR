@@ -12,8 +12,11 @@ public class PauseManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		player = gameObject;
-		pausePanel = GameObject.Find ("Player_Body/PauseCanvas");
+		player = gameObject.transform.root.gameObject;
+		Debug.Log (player);
+		//pausePanel = GameObject.Find ("Player_Body/PauseCanvas");
+		pausePanel = gameObject.transform.FindChild("PauseCanvas").gameObject;
+		Debug.Log(pausePanel);
 		prevPauseState = isPaused = false;
 		PauseGame (false);
 	}
@@ -42,10 +45,12 @@ public class PauseManager : MonoBehaviour {
 		if (state) {			
 			Cursor.lockState = CursorLockMode.None;
 			Cursor.visible = true;
+			// TODO: Uncouple the Pause Method. This should be dynamically set
 			player.GetComponent<FirstPersonController> ().Pause();
 		} else {			
 			Cursor.lockState = CursorLockMode.Locked;
 			Cursor.visible = false;
+			// TODO: Uncouple the Resume Method. This should be dynamically set
 			player.GetComponent<FirstPersonController> ().Resume();
 		}
 	}
