@@ -1293,7 +1293,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 11479024}
         m_MethodName: QuitGameClicked
         m_Mode: 1
         m_Arguments:
@@ -1329,6 +1329,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a9d106adfaa298498abbe4fea945dd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pauseFunction:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11428240}
+        m_MethodName: Pause
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  resumeFunction:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11428240}
+        m_MethodName: Resume
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
   isPaused: 0
 --- !u!114 &11485374
 MonoBehaviour:
@@ -1373,8 +1405,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
+  viewIdField: 1
+  instantiationId: 1
   isRuntimeInstantiated: 0
 --- !u!114 &11498020
 MonoBehaviour:
